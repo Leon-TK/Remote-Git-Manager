@@ -16,7 +16,7 @@ REMOTE_GIT_ENV = "GIT_BARE_REPOS"
 LOCAL_GIT_ENV = "GIT_REMOTE_REPOS"
 
 # Name of project. Remote git folder name
-PROJECT_NAME = "Remote git managment scripts"
+PROJECT_NAME = "Tesasa"
 
 # Set this to false if you set no key phrase for your ssh key
 USE_KEYPHRASE = True
@@ -96,10 +96,10 @@ def CreateCloneRepository():
     powershell.stdin.close()
     PrintBuffer(powershell, "POWERSHELL")
 
-def GetPass():
-    gSshPass = input("Enter your SSH keyphrase: ")
+def GetPassFromUser():
+    gSshKeyPhrase = getpass()
 
-if USE_KEYPHRASE: GetPass()
+if USE_KEYPHRASE: GetPassFromUser()
 CreateRemoteRepository()
 CreateCloneRepository()
 
