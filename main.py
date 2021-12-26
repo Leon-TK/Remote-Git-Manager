@@ -60,6 +60,7 @@ def GetLocalGitPath(process):
 def ChangeDirToLocalGit(process):
     process.stdin.write("cd \"$value\"\n")
 
+#CloneNotWork-Fix
 def CloneRemoteRepo(process):
     #TODO: have to get git remote path from shell to paste there "D:\git\"
     process.stdin.write(f"git clone \"{gHostAddress}:D:\git\{gProjectName}.git\"\n")
