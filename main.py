@@ -26,11 +26,11 @@ gSshKeyPhrase = ''
 
 def ShellSshProcess(host):
     # Use shell = true because we need powershell comandlets, not ssh. You hae to be ensure that local and remote uese powershell as default shell
-    return subprocess.Popen(["ssh", f"{host}"], stdin=subprocess.PIPE, stdout = subprocess.PIPE, universal_newlines = True, bufsize = 0, shell = True)
+    return subprocess.Popen(["ssh", f"{host}"], stdin=subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines = True, bufsize = 0, shell = True)
 
 def PowershellProcess():
     # Use shell = false because powershell is a shell
-    return subprocess.Popen(["powershell"], stdin=subprocess.PIPE, stdout = subprocess.PIPE, universal_newlines = True, bufsize = 0, shell = False)
+    return subprocess.Popen(["powershell"], stdin=subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines = True, bufsize = 0, shell = False)
 
 def GetGitFolderPath(process):
     process.stdin.write(f"$env = Get-ChildItem -Path Env:\{gRemoteGitEnv}\n")
@@ -86,6 +86,7 @@ def CreateRemoteRepository():
     Exit(ssh)
     ssh.stdin.close()
     PrintBuffer(ssh, "SSH")
+    ssh.terminate()
 
 def CreateCloneRepository():
     powershell = PowershellProcess()
@@ -95,6 +96,7 @@ def CreateCloneRepository():
     Exit(powershell)
     powershell.stdin.close()
     PrintBuffer(powershell, "POWERSHELL")
+    powershell.terminate()
 
 def GetPassFromUser():
     gSshKeyPhrase = getpass()
