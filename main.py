@@ -101,12 +101,12 @@ def GetPassFromUser():
 
 if __name__ == '__main__':
 
-    gProjectName = sys.argv[0]
+    gProjectName = sys.argv[1]
     if gProjectName is None or gProjectName == '':
         print("Project name is empty!")
         sys.exit(0)
     if USE_KEYPHRASE: 
-        gSshKeyPhrase = sys.argv[1]
+        gSshKeyPhrase = sys.argv[2]
         if gSshKeyPhrase is None or gSshKeyPhrase == '':
             gSshKeyPhrase = GetPassFromUser()
 
