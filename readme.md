@@ -1,0 +1,1 @@
+Initial feature - script that helps with server git managment

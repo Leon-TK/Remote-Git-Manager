@@ -1,0 +1,1 @@
+TODO:  have to get git remote path from shell to paste there "D:\git\", line - 65, file - E:\Source\git\LeonServer_Origin\Remote git managment scripts\main.py
